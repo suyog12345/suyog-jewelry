@@ -34,9 +34,10 @@ const isCrawler = (userAgent) => {
 router.get('/:id', async (req, res, next) => {
   const userAgent = req.get('User-Agent');
 
-  // Only serve OG HTML to crawlers
+  // Only serve OG HTML to crawlers, redirect real users to SPA
   if (!isCrawler(userAgent)) {
-    return next();
+    const siteUrl = process.env.CLIENT_URL || 'https://suyogjewelry.com';
+    return res.redirect(`${siteUrl}/products/${req.params.id}`);
   }
 
   try {
