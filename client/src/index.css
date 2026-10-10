@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+/* ── Design Tokens ── */
+@theme {
+  --color-gold-50: #FFF9E6;
+  --color-gold-100: #FFF0BF;
+  --color-gold-200: #FFE699;
+  --color-gold-300: #FFD966;
+  --color-gold-400: #F2C94C;
+  --color-gold-500: #D4A843;
+  --color-gold-600: #B8923A;
+  --color-gold-700: #8B6914;
+  --color-gold-800: #6B5210;
+  --color-gold-900: #4A380A;
+
+  --color-cream-50: #FFFDF7;
+  --color-cream-100: #FFF8E7;
+  --color-cream-200: #FFF3D6;
+  --color-cream-300: #FFECC0;
+
+  --color-maroon-50: #FDF2F2;
+  --color-maroon-100: #F5D0D0;
+  --color-maroon-200: #E8A0A0;
+  --color-maroon-300: #D06060;
+  --color-maroon-400: #B03030;
+  --color-maroon-500: #800020;
+  --color-maroon-600: #6B001A;
+  --color-maroon-700: #540015;
+  --color-maroon-800: #3D000F;
+  --color-maroon-900: #2A000A;
+
+  --color-dark: #1A1A1A;
+  --color-dark-light: #2D2D2D;
+  --color-gray-warm: #8B8178;
+
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+/* ── Base Styles ── */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-dark);
+  background-color: var(--color-cream-50);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-cream-100);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-gold-400);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold-600);
+}
+
+/* ── Swiper overrides ── */
+.swiper-pagination-bullet-active {
+  background: var(--color-gold-500) !important;
+}
+.swiper-button-next, .swiper-button-prev {
+  color: var(--color-gold-500) !important;
+}
+
+/* ── Skeleton animation ── */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, var(--color-cream-200) 25%, var(--color-cream-100) 50%, var(--color-cream-200) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 8px;
+}
+
+/* ── Selection ── */
+::selection {
+  background: var(--color-gold-300);
+  color: var(--color-dark);
+}

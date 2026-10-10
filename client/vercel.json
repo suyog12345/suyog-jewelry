@@ -1,0 +1,19 @@
+{
+  "rewrites": [
+    {
+      "source": "/products/:id",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": "(?i).*(whatsapp|facebookexternalhit|twitterbot|linkedinbot|telegrambot|slackbot|googlebot|bingbot|discordbot|pinterest).*"
+        }
+      ],
+      "destination": "https://suyog-jewelry-api.vercel.app/products/:id"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
