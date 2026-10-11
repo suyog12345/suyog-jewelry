@@ -87,14 +87,17 @@ NODE_ENV=development
 PORT=5000
 MONGODB_URI=mongodb+srv://your-user:your-password@cluster0.xxxxx.mongodb.net/suyog-jewelry?retryWrites=true&w=majority
 JWT_SECRET=your_super_secret_jwt_key_here
-JWT_EXPIRE=7d
+JWT_EXPIRES_IN=7d
 CLOUDINARY_CLOUD_NAME=your_cloud_name
 CLOUDINARY_API_KEY=your_api_key
 CLOUDINARY_API_SECRET=your_api_secret
 ADMIN_EMAIL=admin@suyogjewelry.com
-ADMIN_PASSWORD=YourSecurePassword123!
-WHATSAPP_NUMBER=919752009399
+ADMIN_PASSWORD=your_strong_admin_password_here
 CLIENT_URL=http://localhost:5173
+ALLOWED_ORIGINS=http://localhost:5173
+SITE_URL=http://localhost:5173
+COOKIE_SAMESITE=lax
+COOKIE_SECURE=false
 ```
 
 ### 4. Install & Run
@@ -103,11 +106,14 @@ CLIENT_URL=http://localhost:5173
 # Install dependencies
 npm install
 
-# Seed admin user
+# Seed admin user (reads strictly from .env)
 npm run seed:admin
 
 # Seed sample data (categories + products)
 npm run seed
+
+# Remove dummy seed products before production launch
+npm run clear:dummy
 
 # Start development server
 npm run dev
@@ -199,14 +205,6 @@ GET /api/products?page=1&limit=12&category=ID&material=gold,silver&minPrice=1000
 - All inputs validated with **express-validator**
 - Centralized error handling (no stack traces in production)
 
-## 🚀 Deployment (Render)
+## 🚀 Production Deployment
 
-1. Push code to GitHub
-2. Go to [Render](https://render.com/) → New Web Service
-3. Connect your GitHub repo
-4. Settings:
-   - **Root Directory**: `server`
-   - **Build Command**: `npm install`
-   - **Start Command**: `npm start`
-5. Add all environment variables from `.env`
-6. Deploy!
+For the complete end-to-end production deployment guide covering Render, Vercel, MongoDB Atlas IP allowlist, Cloudinary setup, custom domains (`www.suyogjewelry.com`, `api.suyogjewelry.com`), PWA configuration, and pre-launch cleanup checklist, see the root [README.md](../README.md).

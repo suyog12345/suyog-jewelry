@@ -64,13 +64,17 @@ const seed = async () => {
     // Seed admin if not exists
     const existingAdmin = await User.findOne({ role: 'admin' });
     if (!existingAdmin) {
-      await User.create({
-        name: 'Suyog Admin',
-        email: process.env.ADMIN_EMAIL || 'admin@suyogjewelry.com',
-        password: process.env.ADMIN_PASSWORD || 'Admin@123456',
-        role: 'admin',
-      });
-      console.log('✅ Admin user created');
+      if (!process.env.ADMIN_EMAIL || !process.env.ADMIN_PASSWORD) {
+        console.warn('⚠️  ADMIN_EMAIL or ADMIN_PASSWORD not set in .env. Skipping admin creation in seed.');
+      } else {
+        await User.create({
+          name: 'Suyog Admin',
+          email: process.env.ADMIN_EMAIL,
+          password: process.env.ADMIN_PASSWORD,
+          role: 'admin',
+        });
+        console.log('✅ Admin user created');
+      }
     }
 
     // Clear existing data

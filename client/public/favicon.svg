@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F5E6BE"/>
+      <stop offset="50%" stop-color="#D4AF37"/>
+      <stop offset="100%" stop-color="#996515"/>
+    </linearGradient>
+    <radialGradient id="maroonGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#7B1930"/>
+      <stop offset="100%" stop-color="#4A0817"/>
+    </radialGradient>
+  </defs>
+  <!-- Background Badge -->
+  <circle cx="50" cy="50" r="46" fill="url(#maroonGrad)" stroke="url(#goldGrad)" stroke-width="3"/>
+  <circle cx="50" cy="50" r="41" fill="none" stroke="#F5E6BE" stroke-width="0.8" stroke-dasharray="2,2"/>
+  
+  <!-- Diamond / Jewel Motif -->
+  <polygon points="32,38 68,38 50,26" fill="#F5E6BE" stroke="#4A0817" stroke-width="0.5"/>
+  <polygon points="32,38 68,38 50,52" fill="#E6CA65" stroke="#4A0817" stroke-width="0.5"/>
+  <polygon points="20,48 32,38 50,52" fill="#996515" stroke="#4A0817" stroke-width="0.5"/>
+  <polygon points="80,48 68,38 50,52" fill="#996515" stroke="#4A0817" stroke-width="0.5"/>
+  <polygon points="20,48 50,52 50,76" fill="#D4AF37" stroke="#4A0817" stroke-width="0.5"/>
+  <polygon points="80,48 50,52 50,76" fill="#F5E6BE" stroke="#4A0817" stroke-width="0.5"/>
+  
+  <!-- Sparkles -->
+  <polygon points="72,25 74,21 76,25 80,27 76,29 74,33 72,29 68,27" fill="#FFFFFF"/>
+</svg>

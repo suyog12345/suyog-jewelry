@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Outlet, useLocation, Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { useAuth } from '../../context/AuthContext';
 import { getContacts } from '../../services/api';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -60,6 +61,10 @@ const AdminLayout = () => {
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col md:flex-row antialiased selection:bg-amber-500 selection:text-slate-950">
+      <Helmet>
+        <title>Suyog Jewelry - Admin Console</title>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
       {/* ── Desktop Sidebar ── */}
       <aside className="hidden md:flex flex-col w-64 bg-slate-900 border-r border-slate-800 shrink-0 sticky top-0 h-screen z-30">
         {/* Brand */}

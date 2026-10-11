@@ -2,6 +2,40 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
 /**
+ * Helper to build cookie options based on env configuration
+ */
+const getCookieOptions = () => {
+  const isProduction = process.env.NODE_ENV === 'production';
+
+  // COOKIE_SAMESITE: 'lax', 'none', or 'strict'
+  let sameSite = process.env.COOKIE_SAMESITE ? process.env.COOKIE_SAMESITE.toLowerCase() : null;
+  // COOKIE_SECURE: 'true' or 'false'
+  let secure = process.env.COOKIE_SECURE !== undefined
+    ? process.env.COOKIE_SECURE === 'true'
+    : isProduction;
+
+  // Default fallback:
+  // - Cross-origin testing on separate domains (e.g. vercel.app and onrender.com) -> 'none' + secure
+  // - Same origin / shared domain (e.g. suyogjewelry.com) or local dev -> 'lax'
+  if (!sameSite) {
+    sameSite = isProduction ? 'none' : 'lax';
+  }
+
+  // Browser standard: SameSite=None requires Secure=true
+  if (sameSite === 'none') {
+    secure = true;
+  }
+
+  return {
+    httpOnly: true,
+    secure,
+    sameSite,
+    maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+    path: '/',
+  };
+};
+
+/**
  * Generate JWT token and set as httpOnly cookie
  */
 const generateTokenAndSetCookie = (user, res) => {
@@ -9,14 +43,7 @@ const generateTokenAndSetCookie = (user, res) => {
     expiresIn: process.env.JWT_EXPIRE || '7d',
   });
 
-  const cookieOptions = {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
-    maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-    path: '/',
-  };
-
+  const cookieOptions = getCookieOptions();
   res.cookie('jwt', token, cookieOptions);
   return token;
 };
@@ -75,10 +102,11 @@ const login = async (req, res) => {
  * @access  Private
  */
 const logout = async (req, res) => {
+  const cookieOptions = getCookieOptions();
   res.cookie('jwt', '', {
-    httpOnly: true,
+    ...cookieOptions,
     expires: new Date(0),
-    path: '/',
+    maxAge: 0,
   });
 
   res.json({

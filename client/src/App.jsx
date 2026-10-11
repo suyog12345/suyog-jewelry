@@ -30,10 +30,10 @@ const App = () => {
   return (
     <Suspense
       fallback={
-        <div className="min-h-screen w-full flex items-center justify-center bg-cream-50">
+        <div className="min-h-screen w-full flex items-center justify-center bg-white">
           <div className="flex flex-col items-center gap-4">
-            <span className="text-3xl font-serif text-gold-500 animate-pulse">✧</span>
-            <span className="font-heading text-gold-700 tracking-widest text-sm uppercase">Loading...</span>
+            <span className="text-2xl font-serif text-[#111111] animate-pulse">✧</span>
+            <span className="font-sans text-[11px] font-medium text-[#6B6B6B] tracking-[0.25em] uppercase">Loading...</span>
           </div>
         </div>
       }

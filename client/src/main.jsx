@@ -6,7 +6,11 @@ import { Toaster } from 'react-hot-toast';
 import App from './App';
 import ErrorBoundary from './components/ErrorBoundary';
 import { AuthProvider } from './context/AuthContext';
+import { registerSW } from 'virtual:pwa-register';
 import './index.css';
+
+// Register PWA service worker with immediate check
+registerSW({ immediate: true });
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

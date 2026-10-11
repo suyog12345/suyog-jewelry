@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiChevronDown, FiHelpCircle } from 'react-icons/fi';
+import { FiChevronDown } from 'react-icons/fi';
 import { FaWhatsapp } from 'react-icons/fa';
 
 const faqs = [
   {
-    category: 'Ordering & Enquiries',
+    category: 'Ordering & Concierge',
     items: [
       {
-        q: 'How do I purchase jewelry from Suyog Jewelry?',
+        q: 'How do I acquire jewelry from Suyog Jewelry?',
         a: 'We operate as a high-touch bespoke jewelry boutique. Every product features an "Enquire on WhatsApp" button. Tapping it opens a direct conversation with our jewelry consultants with the product details pre-filled. We discuss sizes, custom requirements, bullion pricing, and arrange payment and delivery.',
       },
       {
@@ -18,7 +18,7 @@ const faqs = [
       },
       {
         q: 'Can I customize an existing design or create a custom piece?',
-        a: 'Absolutely! More than 60% of our bridal and statement pieces are tailored specifically for our patrons. You can share your inspiration sketches or modifications with us on WhatsApp, and our master karigars will craft it to perfection.',
+        a: 'Absolutely. Over 60% of our bridal and statement pieces are tailored specifically for our patrons. You can share your inspiration sketches or modifications with us on WhatsApp, and our master karigars will craft it to perfection.',
       },
     ],
   },
@@ -72,35 +72,34 @@ const FAQ = () => {
   const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || '';
 
   return (
-    <div className="bg-cream-50 min-h-screen py-12 md:py-20">
+    <div className="bg-white min-h-screen py-16 md:py-24 lg:py-32">
       <Helmet>
         <title>Frequently Asked Questions (FAQ) - Suyog Jewelry</title>
         <meta
           name="description"
           content="Find answers to common questions about ordering, BIS hallmarking, custom bridal designs, and WhatsApp consultations at Suyog Jewelry."
         />
-        <meta property="og:title" content="FAQ - Suyog Jewelry" />
-        <meta property="og:description" content="Answers to common questions about ordering fine handcrafted jewelry at Suyog Jewelry." />
       </Helmet>
 
-      <div className="container mx-auto px-4 md:px-8 max-w-4xl">
+      <div className="max-w-4xl mx-auto px-5 md:px-8">
         {/* Header */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gold-100 text-gold-700 mb-4">
-            <FiHelpCircle size={24} />
-          </div>
-          <h1 className="font-heading text-3xl md:text-5xl text-dark mb-4">Frequently Asked Questions</h1>
-          <div className="w-24 h-1 bg-gold-400 mx-auto mb-4"></div>
-          <p className="text-gray-warm text-sm md:text-base max-w-xl mx-auto">
-            Everything you need to know about our handcrafted jewelry, certification standards, and personalised order process.
+        <div className="text-center mb-14 md:mb-20">
+          <span className="text-[11px] uppercase tracking-[0.25em] text-[#6B6B6B] font-medium block mb-2">
+            Inquiries & Knowledge
+          </span>
+          <h1 className="font-heading text-4xl md:text-6xl text-[#111111] font-light mb-4">
+            Frequently Asked Questions
+          </h1>
+          <p className="text-[#6B6B6B] text-xs md:text-sm max-w-lg mx-auto leading-relaxed font-light">
+            Essential information regarding our bespoke creations, gold purity standards, and private consultations.
           </p>
         </div>
 
         {/* Accordions by category */}
-        <div className="space-y-10">
+        <div className="space-y-12">
           {faqs.map((group, catIdx) => (
-            <div key={catIdx} className="bg-white rounded-xl shadow-sm border border-cream-200 overflow-hidden p-6 md:p-8">
-              <h2 className="font-heading text-xl md:text-2xl text-gold-700 mb-6 border-b border-cream-100 pb-3">
+            <div key={catIdx} className="border border-[#E5E5E5] p-6 md:p-10">
+              <h2 className="font-heading text-2xl md:text-3xl text-[#111111] font-light mb-8 pb-3 border-b border-[#E5E5E5]">
                 {group.category}
               </h2>
 
@@ -112,19 +111,19 @@ const FAQ = () => {
                   return (
                     <div
                       key={itemIdx}
-                      className="border border-cream-200 rounded-lg overflow-hidden transition-colors"
+                      className="border border-[#E5E5E5] transition-colors"
                     >
                       <button
                         onClick={() => toggle(catIdx, itemIdx)}
-                        className="w-full text-left px-5 py-4 flex items-center justify-between gap-4 bg-cream-50 hover:bg-cream-100 transition-colors cursor-pointer"
+                        className="w-full text-left px-5 py-4 flex items-center justify-between gap-4 bg-white hover:bg-[#F7F7F7] transition-colors cursor-pointer"
                         aria-expanded={isOpen}
                       >
-                        <span className="font-heading text-base md:text-lg text-dark font-medium">
+                        <span className="font-heading text-base md:text-lg text-[#111111] font-normal leading-snug">
                           {item.q}
                         </span>
                         <FiChevronDown
-                          size={18}
-                          className={`text-gold-700 shrink-0 transform transition-transform duration-200 ${
+                          size={16}
+                          className={`text-[#111111] shrink-0 transform transition-transform duration-200 ${
                             isOpen ? 'rotate-180' : ''
                           }`}
                         />
@@ -139,7 +138,7 @@ const FAQ = () => {
                             transition={{ duration: 0.25 }}
                             className="overflow-hidden"
                           >
-                            <div className="px-5 py-4 text-gray-warm text-sm leading-relaxed border-t border-cream-200 bg-white">
+                            <div className="px-5 py-4 text-[#6B6B6B] text-xs leading-relaxed border-t border-[#E5E5E5] bg-[#F7F7F7] font-light">
                               {item.a}
                             </div>
                           </motion.div>
@@ -153,20 +152,25 @@ const FAQ = () => {
           ))}
         </div>
 
-        {/* Still Have Questions CTA */}
-        <div className="mt-12 bg-maroon-900 text-cream-50 rounded-xl p-8 text-center border border-gold-600/30">
-          <h3 className="font-heading text-2xl mb-2 text-gold-400">Still have questions?</h3>
-          <p className="text-cream-200 text-sm max-w-md mx-auto mb-6">
-            Our jewelry specialists are available on WhatsApp to answer any queries and assist you with custom requirements.
+        {/* Full Black Contrast CTA */}
+        <div className="mt-14 bg-[#0D0D0D] text-white p-8 md:p-12 text-center border border-[#1F1F1F]">
+          <span className="text-[10px] uppercase tracking-[0.3em] text-[#9E9E9E] font-medium block mb-2">
+            Personal Concierge
+          </span>
+          <h3 className="font-heading text-2xl md:text-3xl font-light mb-3 text-white">
+            Have a Specific Question?
+          </h3>
+          <p className="text-[#9E9E9E] text-xs max-w-md mx-auto mb-8 font-light leading-relaxed">
+            Our jewelry specialists are accessible on WhatsApp to provide live guidance, customized quotations, and sizing consultations.
           </p>
           <a
             href={`https://wa.me/${whatsappNumber}?text=Hi%20Suyog%20Jewelry,%20I%20have%20a%20question%20about%20your%20collections`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white px-6 py-3 rounded-lg font-medium text-sm transition-colors shadow"
+            className="inline-flex items-center gap-2.5 bg-[#25D366] hover:bg-[#1ebd5a] text-white px-7 py-3.5 text-xs uppercase tracking-[0.2em] font-medium transition-colors"
           >
-            <FaWhatsapp size={18} />
-            <span>Chat on WhatsApp</span>
+            <FaWhatsapp size={17} />
+            <span>Consult on WhatsApp</span>
           </a>
         </div>
       </div>

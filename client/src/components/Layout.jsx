@@ -15,7 +15,7 @@ const Layout = () => {
       <Navbar />
       
       {/* Add top padding to account for fixed navbar */}
-      <main className="flex-grow pt-[72px]">
+      <main className="flex-grow pt-20">
         <Outlet />
       </main>
       

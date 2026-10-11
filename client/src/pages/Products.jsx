@@ -103,41 +103,50 @@ const Products = () => {
   };
 
   return (
-    <div className="bg-cream-50 min-h-screen py-8">
+    <div className="bg-white min-h-screen py-12 md:py-20 lg:py-24">
       <Helmet>
         <title>Our Collections - Suyog Jewelry</title>
         <meta name="description" content="Explore our extensive collection of fine jewelry including rings, necklaces, earrings, and bridal sets." />
       </Helmet>
 
-      <div className="container mx-auto px-4 md:px-8">
-        <div className="flex flex-col md:flex-row justify-between items-center mb-8 border-b border-cream-200 pb-6">
-          <h1 className="font-heading text-3xl md:text-4xl text-dark mb-4 md:mb-0">Collections</h1>
+      <div className="max-w-7xl mx-auto px-5 md:px-8 lg:px-12">
+        {/* Header Strip */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 pb-8 border-b border-[#E5E5E5] gap-6">
+          <div>
+            <span className="text-[11px] uppercase tracking-[0.25em] text-[#6B6B6B] font-medium block mb-2">
+              Catalog & Archive
+            </span>
+            <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl text-[#111111] font-light">
+              Collections
+            </h1>
+          </div>
           
           <div className="flex items-center gap-4 w-full md:w-auto">
             {/* Search Input */}
-            <form onSubmit={applyFilters} className="relative flex-grow md:w-64">
+            <form onSubmit={applyFilters} className="relative flex-grow md:w-72">
               <input
                 type="text"
                 name="search"
                 value={filters.search}
                 onChange={handleFilterChange}
-                placeholder="Search..."
-                className="w-full bg-white border border-cream-200 rounded py-2 pl-10 pr-4 text-sm focus:outline-none focus:border-gold-500 transition-colors"
+                placeholder="Search pieces..."
+                className="w-full bg-[#F7F7F7] border border-[#E5E5E5] py-2.5 pl-10 pr-4 text-xs tracking-wider placeholder-[#9E9E9E] focus:outline-none focus:border-[#111111] focus:bg-white transition-colors"
               />
-              <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-warm" />
+              <FiSearch className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#6B6B6B]" size={14} />
             </form>
             
-            {/* Mobile Filter Toggle */}
+            {/* Mobile Filter Toggle Button */}
             <button 
-              className="md:hidden flex items-center justify-center p-2 bg-dark text-white rounded"
+              className="md:hidden flex items-center gap-2 px-4 py-2.5 bg-[#111111] text-white text-xs uppercase tracking-wider font-medium"
               onClick={() => setShowFilters(true)}
             >
-              <FiFilter />
+              <FiFilter size={14} />
+              <span>Filters</span>
             </button>
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row gap-8">
+        <div className="flex flex-col md:flex-row gap-10 lg:gap-14">
           {/* Filters Sidebar */}
           <aside 
             className={`
@@ -146,24 +155,40 @@ const Products = () => {
               ${showFilters ? 'translate-x-0' : '-translate-x-full md:transform-none'}
             `}
           >
-            <div className="flex justify-between items-center mb-6 md:hidden">
-              <h2 className="font-heading text-xl">Filters</h2>
-              <button onClick={() => setShowFilters(false)} className="p-2"><FiX size={24} /></button>
+            <div className="flex justify-between items-center mb-8 md:hidden border-b border-[#E5E5E5] pb-4">
+              <h2 className="font-heading text-2xl font-light">Filters</h2>
+              <button onClick={() => setShowFilters(false)} className="p-1"><FiX size={24} /></button>
             </div>
 
-            <form onSubmit={applyFilters} className="space-y-6">
+            <form onSubmit={applyFilters} className="space-y-8">
               {/* Category */}
               <div>
-                <h3 className="font-medium mb-3 border-b border-cream-200 pb-2">Category</h3>
-                <div className="space-y-2">
-                  <label className="flex items-center gap-2 cursor-pointer text-sm hover:text-gold-700">
-                    <input type="radio" name="category" value="" checked={filters.category === ''} onChange={handleFilterChange} className="accent-gold-500" />
-                    All Categories
+                <h3 className="font-body text-xs font-medium uppercase tracking-[0.2em] text-[#111111] mb-4 pb-2 border-b border-[#E5E5E5]">
+                  Category
+                </h3>
+                <div className="space-y-2.5">
+                  <label className="flex items-center gap-2.5 cursor-pointer text-xs text-[#6B6B6B] hover:text-[#111111] transition-colors">
+                    <input
+                      type="radio"
+                      name="category"
+                      value=""
+                      checked={filters.category === ''}
+                      onChange={handleFilterChange}
+                      className="accent-[#111111]"
+                    />
+                    <span>All Categories</span>
                   </label>
                   {categories.map((cat) => (
-                    <label key={cat._id} className="flex items-center gap-2 cursor-pointer text-sm hover:text-gold-700">
-                      <input type="radio" name="category" value={cat._id} checked={filters.category === cat._id} onChange={handleFilterChange} className="accent-gold-500" />
-                      {cat.name}
+                    <label key={cat._id} className="flex items-center gap-2.5 cursor-pointer text-xs text-[#6B6B6B] hover:text-[#111111] transition-colors">
+                      <input
+                        type="radio"
+                        name="category"
+                        value={cat._id}
+                        checked={filters.category === cat._id}
+                        onChange={handleFilterChange}
+                        className="accent-[#111111]"
+                      />
+                      <span>{cat.name}</span>
                     </label>
                   ))}
                 </div>
@@ -171,16 +196,32 @@ const Products = () => {
 
               {/* Material */}
               <div>
-                <h3 className="font-medium mb-3 border-b border-cream-200 pb-2">Material</h3>
-                <div className="space-y-2 max-h-48 overflow-y-auto pr-2">
-                  <label className="flex items-center gap-2 cursor-pointer text-sm hover:text-gold-700">
-                    <input type="radio" name="material" value="" checked={filters.material === ''} onChange={handleFilterChange} className="accent-gold-500" />
-                    All Materials
+                <h3 className="font-body text-xs font-medium uppercase tracking-[0.2em] text-[#111111] mb-4 pb-2 border-b border-[#E5E5E5]">
+                  Material
+                </h3>
+                <div className="space-y-2.5 max-h-48 overflow-y-auto pr-2">
+                  <label className="flex items-center gap-2.5 cursor-pointer text-xs text-[#6B6B6B] hover:text-[#111111] transition-colors">
+                    <input
+                      type="radio"
+                      name="material"
+                      value=""
+                      checked={filters.material === ''}
+                      onChange={handleFilterChange}
+                      className="accent-[#111111]"
+                    />
+                    <span>All Materials</span>
                   </label>
                   {materials.map((mat) => (
-                    <label key={mat} className="flex items-center gap-2 cursor-pointer text-sm hover:text-gold-700 capitalize">
-                      <input type="radio" name="material" value={mat} checked={filters.material === mat} onChange={handleFilterChange} className="accent-gold-500" />
-                      {mat}
+                    <label key={mat} className="flex items-center gap-2.5 cursor-pointer text-xs text-[#6B6B6B] hover:text-[#111111] capitalize transition-colors">
+                      <input
+                        type="radio"
+                        name="material"
+                        value={mat}
+                        checked={filters.material === mat}
+                        onChange={handleFilterChange}
+                        className="accent-[#111111]"
+                      />
+                      <span>{mat}</span>
                     </label>
                   ))}
                 </div>
@@ -188,20 +229,43 @@ const Products = () => {
 
               {/* Price Range */}
               <div>
-                <h3 className="font-medium mb-3 border-b border-cream-200 pb-2">Price (₹)</h3>
+                <h3 className="font-body text-xs font-medium uppercase tracking-[0.2em] text-[#111111] mb-4 pb-2 border-b border-[#E5E5E5]">
+                  Price Range (₹)
+                </h3>
                 <div className="flex items-center gap-2">
-                  <input type="number" name="minPrice" value={filters.minPrice} onChange={handleFilterChange} placeholder="Min" className="w-full border border-cream-200 rounded px-2 py-1 text-sm focus:outline-none focus:border-gold-500" />
-                  <span>-</span>
-                  <input type="number" name="maxPrice" value={filters.maxPrice} onChange={handleFilterChange} placeholder="Max" className="w-full border border-cream-200 rounded px-2 py-1 text-sm focus:outline-none focus:border-gold-500" />
+                  <input
+                    type="number"
+                    name="minPrice"
+                    value={filters.minPrice}
+                    onChange={handleFilterChange}
+                    placeholder="Min"
+                    className="w-full bg-[#F7F7F7] border border-[#E5E5E5] px-3 py-2 text-xs focus:outline-none focus:border-[#111111] focus:bg-white transition-colors"
+                  />
+                  <span className="text-[#9E9E9E]">&ndash;</span>
+                  <input
+                    type="number"
+                    name="maxPrice"
+                    value={filters.maxPrice}
+                    onChange={handleFilterChange}
+                    placeholder="Max"
+                    className="w-full bg-[#F7F7F7] border border-[#E5E5E5] px-3 py-2 text-xs focus:outline-none focus:border-[#111111] focus:bg-white transition-colors"
+                  />
                 </div>
               </div>
 
               {/* Sort */}
               <div>
-                <h3 className="font-medium mb-3 border-b border-cream-200 pb-2">Sort By</h3>
-                <select name="sort" value={filters.sort} onChange={handleFilterChange} className="w-full border border-cream-200 rounded px-3 py-2 text-sm focus:outline-none focus:border-gold-500 bg-white cursor-pointer">
+                <h3 className="font-body text-xs font-medium uppercase tracking-[0.2em] text-[#111111] mb-4 pb-2 border-b border-[#E5E5E5]">
+                  Sort By
+                </h3>
+                <select
+                  name="sort"
+                  value={filters.sort}
+                  onChange={handleFilterChange}
+                  className="w-full bg-[#F7F7F7] border border-[#E5E5E5] px-3 py-2.5 text-xs text-[#111111] focus:outline-none focus:border-[#111111] focus:bg-white cursor-pointer"
+                >
                   <option value="newest">Newest Arrivals</option>
-                  <option value="popular">Most Popular</option>
+                  <option value="popular">Most Enquired</option>
                   <option value="price_asc">Price: Low to High</option>
                   <option value="price_desc">Price: High to Low</option>
                   <option value="name_asc">Name: A to Z</option>
@@ -209,40 +273,49 @@ const Products = () => {
                 </select>
               </div>
 
-              {/* Actions */}
-              <div className="flex flex-col gap-3 pt-4 border-t border-cream-200">
-                <button type="submit" className="w-full bg-dark text-white py-2 rounded text-sm uppercase tracking-wider font-medium hover:bg-gold-600 transition-colors">
+              {/* Action Buttons */}
+              <div className="flex flex-col gap-3 pt-4 border-t border-[#E5E5E5]">
+                <button
+                  type="submit"
+                  className="w-full bg-[#111111] text-white border border-[#111111] py-3 text-xs uppercase tracking-[0.2em] font-medium hover:bg-white hover:text-[#111111] transition-all duration-300"
+                >
                   Apply Filters
                 </button>
-                <button type="button" onClick={clearFilters} className="w-full border border-dark text-dark py-2 rounded text-sm uppercase tracking-wider font-medium hover:bg-cream-100 transition-colors">
+                <button
+                  type="button"
+                  onClick={clearFilters}
+                  className="w-full bg-white text-[#111111] border border-[#E5E5E5] py-3 text-xs uppercase tracking-[0.2em] font-medium hover:border-[#111111] transition-all duration-300"
+                >
                   Clear All
                 </button>
               </div>
             </form>
           </aside>
 
-          {/* Product Grid */}
+          {/* Products Grid */}
           <div className="flex-1">
-            {/* Results summary */}
-            <div className="mb-6 text-sm text-gray-warm">
-              {loading ? 'Loading...' : `Showing ${products.length > 0 ? (pagination.page - 1) * pagination.limit + 1 : 0}-${Math.min(pagination.page * pagination.limit, pagination.total)} of ${pagination.total} products`}
+            {/* Results Counter */}
+            <div className="mb-8 text-xs text-[#6B6B6B] uppercase tracking-wider flex justify-between items-center">
+              <span>
+                {loading ? 'Discovering pieces...' : `Showing ${products.length > 0 ? (pagination.page - 1) * pagination.limit + 1 : 0}–${Math.min(pagination.page * pagination.limit, pagination.total)} of ${pagination.total} creations`}
+              </span>
             </div>
 
             {loading ? (
-              <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
+              <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
                 {Array.from({ length: 8 }).map((_, i) => <ProductCardSkeleton key={i} />)}
               </div>
             ) : products.length > 0 ? (
               <>
-                <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
+                <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
                   <AnimatePresence mode="popLayout">
                     {products.map((product) => (
                       <motion.div
                         key={product._id}
                         layout
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.9 }}
+                        initial={{ opacity: 0, y: 15 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 0.95 }}
                         transition={{ duration: 0.3 }}
                       >
                         <ProductCard product={product} />
@@ -251,21 +324,20 @@ const Products = () => {
                   </AnimatePresence>
                 </div>
 
-                {/* Pagination */}
+                {/* Minimal Pagination */}
                 {pagination.pages > 1 && (
-                  <div className="mt-12 flex justify-center items-center gap-2">
+                  <div className="mt-16 pt-10 border-t border-[#E5E5E5] flex justify-center items-center gap-2">
                     <button 
                       onClick={() => handlePageChange(pagination.page - 1)}
                       disabled={pagination.page === 1}
-                      className="p-2 rounded border border-cream-200 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gold-100 transition-colors text-dark"
+                      className="p-2.5 border border-[#E5E5E5] disabled:opacity-30 disabled:cursor-not-allowed hover:border-[#111111] transition-colors text-[#111111]"
                       aria-label="Previous page"
                     >
-                      <FiChevronLeft size={20} />
+                      <FiChevronLeft size={16} />
                     </button>
                     
-                    <div className="flex gap-1">
+                    <div className="flex gap-1.5">
                       {Array.from({ length: Math.min(5, pagination.pages) }, (_, i) => {
-                        // Complex logic for showing pages properly... keeping it simple for now
                         let pageNum = i + 1;
                         if (pagination.pages > 5) {
                           if (pagination.page > 3 && pagination.page < pagination.pages - 1) {
@@ -279,10 +351,10 @@ const Products = () => {
                           <button
                             key={pageNum}
                             onClick={() => handlePageChange(pageNum)}
-                            className={`w-10 h-10 rounded transition-colors text-sm font-medium ${
+                            className={`w-9 h-9 text-xs uppercase tracking-wider font-medium transition-all ${
                               pagination.page === pageNum 
-                                ? 'bg-gold-500 text-dark' 
-                                : 'border border-cream-200 hover:bg-gold-100 text-dark'
+                                ? 'bg-[#111111] text-white border border-[#111111]' 
+                                : 'bg-white border border-[#E5E5E5] text-[#111111] hover:border-[#111111]'
                             }`}
                           >
                             {pageNum}
@@ -294,23 +366,28 @@ const Products = () => {
                     <button 
                       onClick={() => handlePageChange(pagination.page + 1)}
                       disabled={pagination.page === pagination.pages}
-                      className="p-2 rounded border border-cream-200 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gold-100 transition-colors text-dark"
+                      className="p-2.5 border border-[#E5E5E5] disabled:opacity-30 disabled:cursor-not-allowed hover:border-[#111111] transition-colors text-[#111111]"
                       aria-label="Next page"
                     >
-                      <FiChevronRight size={20} />
+                      <FiChevronRight size={16} />
                     </button>
                   </div>
                 )}
               </>
             ) : (
-              <div className="flex flex-col items-center justify-center py-20 text-center bg-white rounded-lg border border-cream-200 px-4">
-                <div className="w-16 h-16 bg-cream-100 rounded-full flex items-center justify-center text-gray-warm mb-4">
-                  <FiSearch size={24} />
+              <div className="flex flex-col items-center justify-center py-24 text-center bg-[#F7F7F7] border border-[#E5E5E5] px-6">
+                <div className="w-12 h-12 border border-[#CCCCCC] flex items-center justify-center text-[#6B6B6B] mb-5">
+                  <FiSearch size={18} />
                 </div>
-                <h3 className="font-heading text-xl mb-2">No products found</h3>
-                <p className="text-gray-warm mb-6 max-w-md">We couldn't find any products matching your current filters. Try adjusting your search or clearing some filters.</p>
-                <button onClick={clearFilters} className="bg-dark text-white px-6 py-2 rounded text-sm uppercase tracking-wider font-medium hover:bg-gold-600 transition-colors">
-                  Clear Filters
+                <h3 className="font-heading text-2xl font-light text-[#111111] mb-2">No Pieces Found</h3>
+                <p className="text-[#6B6B6B] text-xs leading-relaxed mb-6 max-w-sm">
+                  We could not find any creations matching your active filter selections.
+                </p>
+                <button
+                  onClick={clearFilters}
+                  className="bg-[#111111] text-white border border-[#111111] hover:bg-white hover:text-[#111111] px-7 py-3 text-xs uppercase tracking-[0.2em] font-medium transition-all"
+                >
+                  Reset All Filters
                 </button>
               </div>
             )}
