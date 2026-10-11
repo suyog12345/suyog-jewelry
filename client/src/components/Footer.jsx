@@ -9,7 +9,7 @@ const Footer = () => {
 
   return (
     <footer className="bg-[#0D0D0D] text-white pt-20 md:pt-28 pb-12 border-t border-[#1F1F1F]">
-      <div className="max-w-7xl mx-auto px-5 md:px-8 lg:px-12 grid grid-cols-1 md:grid-cols-4 gap-12 lg:gap-16">
+      <div className="max-w-7xl mx-auto px-5 md:px-8 lg:px-12 grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
 
         {/* Brand Column */}
         <div className="col-span-1 md:col-span-1">
@@ -54,7 +54,7 @@ const Footer = () => {
         </div>
 
         {/* Collections */}
-        <div>
+        {/* <div>
           <h4 className="font-body text-xs font-medium text-white mb-6 uppercase tracking-[0.25em]">
             Collections
           </h4>
@@ -65,7 +65,7 @@ const Footer = () => {
             <li><Link to="/products?category=Bridal Sets" className="hover:text-white transition-colors">Bridal Suites</Link></li>
             <li><Link to="/products?featured=true" className="hover:text-white transition-colors">Featured Creations</Link></li>
           </ul>
-        </div>
+        </div> */}
 
         {/* Maison Information */}
         <div>

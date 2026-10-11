@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
+import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import About from './pages/About';
@@ -28,7 +29,9 @@ const ContactsList = lazy(() => import('./admin/pages/ContactsList'));
 
 const App = () => {
   return (
-    <Suspense
+    <>
+      <ScrollToTop />
+      <Suspense
       fallback={
         <div className="min-h-screen w-full flex items-center justify-center bg-white">
           <div className="flex flex-col items-center gap-4">
@@ -74,6 +77,7 @@ const App = () => {
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>
+    </>
   );
 };
 

@@ -78,7 +78,7 @@ const Contact = () => {
                 <h3 className="font-body text-[10px] uppercase tracking-[0.2em] text-[#9E9E9E] mb-1.5 font-medium">
                   Direct Email
                 </h3>
-                <p className="text-white text-xs font-light">contact@suyogjewelry.com</p>
+                <p className="text-white text-xs font-light">suyogsinnarkar@gmail.com</p>
                 <p className="text-[#9E9E9E] text-[11px] mt-1 font-light">General enquiries & certifications</p>
               </div>
             </div>
