@@ -62,7 +62,7 @@ const About = () => {
               Our journey originated in an intimate workshop where master goldsmiths poured passion into every intricate facet. While our reach has flourished, our founding ethos remains steadfast: unwavering gold purity, absolute pricing transparency, and designs marrying ancient Indian heritage with sleek modern luxury.
             </p>
           </motion.div>
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -70,7 +70,7 @@ const About = () => {
             className="relative aspect-[4/3] md:aspect-[4/5] border border-[#E5E5E5] bg-[#F7F7F7] overflow-hidden"
           >
             <img src="/placeholder.jpg" alt="Craftsmanship" loading="lazy" className="w-full h-full object-cover grayscale contrast-105" />
-          </motion.div>
+          </motion.div> */}
         </div>
       </section>
 
@@ -125,7 +125,7 @@ const About = () => {
             Experience in Person
           </h2>
           <p className="text-[#6B6B6B] text-xs md:text-sm leading-relaxed mb-10 font-light">
-            While our digital archive offers an intimate look at our collections, the true weight of the gold and brilliance of the stones is best appreciated in person. We invite you to visit our Mumbai boutique.
+            While our digital archive offers an intimate look at our collections, the true weight of the gold and brilliance of the stones is best appreciated in person. We invite you to visit our Indore boutique.
           </p>
 
           <div className="bg-[#F7F7F7] p-8 md:p-10 border border-[#E5E5E5] text-left max-w-lg mx-auto">
@@ -133,7 +133,8 @@ const About = () => {
               Suyog Jewelry Boutique
             </h3>
             <div className="space-y-3 text-xs text-[#6B6B6B] leading-relaxed">
-              <p><strong className="text-[#111111] uppercase tracking-wider block mb-0.5">Address</strong> 123 Main Bazaar Road, Jewelry District, Mumbai 400002</p>
+              <p><strong className="text-[#111111] uppercase tracking-wider block mb-0.5">Address</strong> Tilak Path, near Rajwada
+                Indore, Madhya Pradesh -452007</p>
               <p><strong className="text-[#111111] uppercase tracking-wider block mb-0.5">Hours</strong> Mon &ndash; Sat: 10:30 AM &ndash; 8:30 PM (Sunday Closed)</p>
               <p><strong className="text-[#111111] uppercase tracking-wider block mb-0.5">Concierge</strong> {formatDisplayPhone()}</p>
             </div>

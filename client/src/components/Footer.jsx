@@ -25,26 +25,26 @@ const Footer = () => {
             Exquisite handcrafted jewelry blending generational Indian artistry with contemporary minimalism.
           </p>
           <div className="flex gap-3">
-            <a 
-              href={instagramUrl} 
-              target="_blank" 
-              rel="noopener noreferrer" 
+            <a
+              href={instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-9 h-9 border border-[#333333] flex items-center justify-center text-white hover:bg-white hover:text-[#0D0D0D] transition-colors"
               aria-label="Instagram"
             >
               <FaInstagram size={15} />
             </a>
-            <a 
-              href="#" 
+            <a
+              href="#"
               className="w-9 h-9 border border-[#333333] flex items-center justify-center text-white hover:bg-white hover:text-[#0D0D0D] transition-colors"
               aria-label="Facebook"
             >
               <FaFacebookF size={14} />
             </a>
-            <a 
-              href={`https://wa.me/${whatsappNumber}`} 
-              target="_blank" 
-              rel="noopener noreferrer" 
+            <a
+              href={`https://wa.me/${whatsappNumber}`}
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-9 h-9 border border-[#333333] flex items-center justify-center text-white hover:bg-[#25D366] hover:border-[#25D366] hover:text-white transition-colors"
               aria-label="WhatsApp"
             >
@@ -88,8 +88,8 @@ const Footer = () => {
           </h4>
           <ul className="flex flex-col gap-3.5 text-xs text-[#9E9E9E] leading-relaxed">
             <li>
-              123 Main Bazaar Road<br />
-              Jewelry District, Mumbai 400002
+              Tilak Path, near Rajwada<br />
+              Indore, Madhya Pradesh -452007
             </li>
             <li className="pt-2">
               <span className="text-white block font-medium">Hours:</span>
