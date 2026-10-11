@@ -6,7 +6,7 @@ import NotFound from './pages/NotFound';
 import About from './pages/About';
 import Contact from './pages/Contact';
 
-// Lazy loaded pages
+// Public Lazy Pages
 const Products = lazy(() => import('./pages/Products'));
 const ProductDetails = lazy(() => import('./pages/ProductDetails'));
 const FAQ = lazy(() => import('./pages/FAQ'));
@@ -14,6 +14,17 @@ const ReturnPolicy = lazy(() => import('./pages/ReturnPolicy'));
 const JewelryCare = lazy(() => import('./pages/JewelryCare'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const Terms = lazy(() => import('./pages/Terms'));
+
+// Admin Lazy Pages & Layout
+const AdminLogin = lazy(() => import('./admin/pages/AdminLogin'));
+const ProtectedRoute = lazy(() => import('./admin/components/ProtectedRoute'));
+const AdminLayout = lazy(() => import('./admin/components/AdminLayout'));
+const Dashboard = lazy(() => import('./admin/pages/Dashboard'));
+const ProductsList = lazy(() => import('./admin/pages/ProductsList'));
+const ProductEdit = lazy(() => import('./admin/pages/ProductEdit'));
+const CategoriesList = lazy(() => import('./admin/pages/CategoriesList'));
+const BannersList = lazy(() => import('./admin/pages/BannersList'));
+const ContactsList = lazy(() => import('./admin/pages/ContactsList'));
 
 const App = () => {
   return (
@@ -28,6 +39,7 @@ const App = () => {
       }
     >
       <Routes>
+        {/* ── Public Storefront Routes ── */}
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="products" element={<Products />} />
@@ -39,8 +51,27 @@ const App = () => {
           <Route path="jewelry-care" element={<JewelryCare />} />
           <Route path="privacy-policy" element={<PrivacyPolicy />} />
           <Route path="terms" element={<Terms />} />
-          <Route path="*" element={<NotFound />} />
         </Route>
+
+        {/* ── Admin Login Route (Unprotected, no public links) ── */}
+        <Route path="/admin/login" element={<AdminLogin />} />
+
+        {/* ── Protected Admin Routes ── */}
+        <Route path="/admin" element={<ProtectedRoute />}>
+          <Route element={<AdminLayout />}>
+            <Route index element={<Dashboard />} />
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="products" element={<ProductsList />} />
+            <Route path="products/new" element={<ProductEdit />} />
+            <Route path="products/:id/edit" element={<ProductEdit />} />
+            <Route path="categories" element={<CategoriesList />} />
+            <Route path="banners" element={<BannersList />} />
+            <Route path="contacts" element={<ContactsList />} />
+          </Route>
+        </Route>
+
+        {/* ── 404 Fallback ── */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>
   );

@@ -5,6 +5,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { Toaster } from 'react-hot-toast';
 import App from './App';
 import ErrorBoundary from './components/ErrorBoundary';
+import { AuthProvider } from './context/AuthContext';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -12,20 +13,22 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <ErrorBoundary>
       <HelmetProvider>
         <BrowserRouter>
-          <Toaster
-            position="top-right"
-            toastOptions={{
-              duration: 3000,
-              style: {
-                background: '#1A1A1A',
-                color: '#FFF9E6',
-                fontFamily: 'Inter, sans-serif',
-              },
-              success: { iconTheme: { primary: '#D4A843', secondary: '#FFF9E6' } },
-              error: { iconTheme: { primary: '#B03030', secondary: '#FFF9E6' } },
-            }}
-          />
-          <App />
+          <AuthProvider>
+            <Toaster
+              position="top-right"
+              toastOptions={{
+                duration: 3000,
+                style: {
+                  background: '#1A1A1A',
+                  color: '#FFF9E6',
+                  fontFamily: 'Inter, sans-serif',
+                },
+                success: { iconTheme: { primary: '#D4A843', secondary: '#FFF9E6' } },
+                error: { iconTheme: { primary: '#B03030', secondary: '#FFF9E6' } },
+              }}
+            />
+            <App />
+          </AuthProvider>
         </BrowserRouter>
       </HelmetProvider>
     </ErrorBoundary>
