@@ -8,9 +8,10 @@ import { motion } from 'framer-motion';
 import toast from 'react-hot-toast';
 import { useProduct } from '../hooks';
 import { trackClick } from '../services/api';
-import { formatPrice, generateWhatsAppLink } from '../utils';
+import { formatPrice, generateWhatsAppLink, copyToClipboard } from '../utils';
 import { optimizeCloudinaryUrl } from '../utils/cloudinary';
 import ProductCard from '../components/ProductCard';
+import ShareModal from '../components/ShareModal';
 
 // Swiper styles
 import 'swiper/css';
@@ -25,6 +26,7 @@ const ProductDetails = () => {
   const { product, related, loading, error } = useProduct(id);
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [selectedSize, setSelectedSize] = useState('');
+  const [shareModalOpen, setShareModalOpen] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -59,31 +61,9 @@ const ProductDetails = () => {
     }
   };
 
-  const handleShare = async () => {
+  const handleShare = () => {
     if (!product) return;
-    const shareUrl = window.location.href;
-    const shareData = {
-      title: `${product.name} - Suyog Jewelry`,
-      text: product.description || `Explore ${product.name} at Suyog Jewelry`,
-      url: shareUrl,
-    };
-
-    if (navigator.share) {
-      try {
-        await navigator.share(shareData);
-      } catch (err) {
-        if (err.name !== 'AbortError') {
-          console.error('Error sharing:', err);
-        }
-      }
-    } else {
-      try {
-        await navigator.clipboard.writeText(shareUrl);
-        toast.success('Product link copied to clipboard!');
-      } catch (err) {
-        toast.error('Unable to copy link to clipboard');
-      }
-    }
+    setShareModalOpen(true);
   };
 
   if (loading) {
@@ -349,13 +329,23 @@ const ProductDetails = () => {
 
       {/* Mobile Sticky Action Bar */}
       <div className="fixed bottom-0 left-0 w-full bg-white/95 backdrop-blur-md border-t border-[#E5E5E5] p-3.5 z-40 lg:hidden shadow-[0_-2px_10px_rgba(0,0,0,0.06)]">
-        <button
-          onClick={handleWhatsAppClick}
-          className="w-full bg-[#25D366] active:bg-[#1eb055] text-white py-3.5 px-4 flex items-center justify-center gap-2.5 font-medium text-xs uppercase tracking-[0.2em] cursor-pointer"
-        >
-          <FaWhatsapp size={18} />
-          <span>Enquire on WhatsApp</span>
-        </button>
+        <div className="flex items-center gap-2.5">
+          <button
+            onClick={handleShare}
+            className="w-12 h-12 flex-shrink-0 border border-[#E5E5E5] bg-white flex items-center justify-center text-[#111111] active:bg-[#F7F7F7] transition-colors cursor-pointer"
+            aria-label="Share piece"
+            title="Share piece"
+          >
+            <FaShareAlt size={15} />
+          </button>
+          <button
+            onClick={handleWhatsAppClick}
+            className="flex-1 bg-[#25D366] active:bg-[#1eb055] text-white py-3.5 px-4 flex items-center justify-center gap-2.5 font-medium text-xs uppercase tracking-[0.2em] cursor-pointer"
+          >
+            <FaWhatsapp size={18} />
+            <span>Enquire on WhatsApp</span>
+          </button>
+        </div>
       </div>
 
       {/* Related Creations Section */}
@@ -376,6 +366,13 @@ const ProductDetails = () => {
           </div>
         </section>
       )}
+
+      {/* Share Options Popup Modal */}
+      <ShareModal
+        isOpen={shareModalOpen}
+        onClose={() => setShareModalOpen(false)}
+        product={product}
+      />
     </div>
   );
 };

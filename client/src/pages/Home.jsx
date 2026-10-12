@@ -51,7 +51,7 @@ const instagramPosts = [
   },
   {
     id: 2,
-    imageUrl: 'https://images.unsplash.com/photo-1611591475152-4735d387c982?q=80&w=800&auto=format&fit=crop',
+    imageUrl: 'https://images.unsplash.com/photo-1611652022419-a9419f74343d?q=80&w=800&auto=format&fit=crop',
     alt: 'Handcrafted Gold Bangles',
     caption: '22K Hallmarked artisanal bangles designed for timeless celebration',
   },
@@ -500,7 +500,7 @@ const Home = () => {
           >
             <div className="flex items-center justify-center gap-2 text-[#111111] mb-2.5">
               <FaInstagram size={16} />
-              <span className="uppercase tracking-[0.25em] text-xs font-medium">@jewelry.by.suyog</span>
+              <span className="uppercase tracking-[0.25em] text-xs font-medium">@suyog.jewelry</span>
             </div>
             <h2 className="font-heading text-3xl md:text-5xl lg:text-6xl text-[#111111] font-light mb-4">
               Follow Our Atelier
