@@ -9,15 +9,15 @@
           "value": ".*(WhatsApp|facebookexternalhit|Twitterbot|TelegramBot|LinkedInBot|Slackbot|Discordbot|Pinterest|Applebot).*"
         }
       ],
-      "destination": "https://api.suyogjewelry.com/products/:slug"
+      "destination": "https://suyog-jewelry.onrender.com/products/:slug"
     },
     {
       "source": "/sitemap.xml",
-      "destination": "https://api.suyogjewelry.com/sitemap.xml"
+      "destination": "https://suyog-jewelry.onrender.com/sitemap.xml"
     },
     {
       "source": "/robots.txt",
-      "destination": "https://api.suyogjewelry.com/robots.txt"
+      "destination": "https://suyog-jewelry.onrender.com/robots.txt"
     },
     {
       "source": "/(.*)",
