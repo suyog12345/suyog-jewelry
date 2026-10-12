@@ -40,6 +40,7 @@ const seoRoutes = require('./routes/seo.routes');
 const { errorHandler, notFound } = require('./middleware/error.middleware');
 
 const app = express();
+app.set('trust proxy', 1);
 
 // --------------- Security Middleware ---------------
 
