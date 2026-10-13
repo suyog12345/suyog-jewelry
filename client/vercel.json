@@ -12,6 +12,10 @@
       "destination": "https://suyog-jewelry.onrender.com/products/:slug"
     },
     {
+      "source": "/api/:path*",
+      "destination": "https://suyog-jewelry.onrender.com/api/:path*"
+    },
+    {
       "source": "/sitemap.xml",
       "destination": "https://suyog-jewelry.onrender.com/sitemap.xml"
     },
